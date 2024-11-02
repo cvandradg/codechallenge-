@@ -2,6 +2,13 @@
   "name": "@testws/source",
   "version": "0.0.0",
   "license": "MIT",
+  "scripts": {
+    "test": "npx nx run-many -t test",
+    "build:only": "npx nx build testapp",
+    "build": "npx nx build testapp && npx nx run-many -t test",
+    "s": "npx nx lint testapp && npx nx build testapp && npx nx run-many -t test && npx nx serve testapp",
+    "r": "npx nx serve testapp"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~18.2.0",
