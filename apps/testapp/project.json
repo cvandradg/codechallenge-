@@ -8,21 +8,34 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
+        "allowedCommonJsDependencies": ["undici"],
         "outputPath": "dist/apps/testapp",
         "index": "apps/testapp/src/index.html",
         "browser": "apps/testapp/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [
+          "zone.js"
+        ],
         "tsConfig": "apps/testapp/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
           {
             "glob": "**/*",
             "input": "apps/testapp/public"
+          },
+          {
+            "glob": "**/*",
+            "input": "libs/testapp/frontend/assets/",
+            "output": "global/assets"
           }
         ],
-        "styles": ["apps/testapp/src/styles.scss"],
+        "styles": [
+          "@angular/material/prebuilt-themes/azure-blue.css",
+          "apps/testapp/src/styles.scss"
+        ],
         "scripts": [],
         "server": "apps/testapp/src/main.server.ts",
         "prerender": true,
@@ -77,7 +90,9 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "apps/testapp/jest.config.ts"
       }
