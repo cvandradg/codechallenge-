@@ -1,4 +1,5 @@
 import { Route } from '@angular/router';
+import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '@testapp/shared/environments/environment';
@@ -12,6 +13,10 @@ export const testappFrontendAppRoutes: Route[] = [
     providers: [
       provideAuth(() => getAuth()),
       provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+      {
+        provide: FIREBASE_OPTIONS,
+        useValue: environment.firebaseConfig,
+      },
     ],
     children: [
       {
