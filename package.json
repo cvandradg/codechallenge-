@@ -5,6 +5,7 @@
   "scripts": {
     "test": "npx nx run-many -t test",
     "build:only": "npx nx build testapp",
+    "format": "npx nx format --base=main --head=HEAD",
     "build": "npx nx build testapp && npx nx run-many -t test",
     "s": "npx nx lint testapp && npx nx build testapp && npx nx run-many -t test && npx nx serve testapp",
     "r": "npx nx serve testapp"
@@ -12,18 +13,20 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~18.2.0",
+    "@angular/cdk": "^18.2.11",
     "@angular/common": "~18.2.0",
     "@angular/compiler": "~18.2.0",
     "@angular/core": "~18.2.0",
     "@angular/fire": "^18.0.1",
     "@angular/forms": "~18.2.0",
+    "@angular/material": "^18.2.11",
     "@angular/platform-browser": "~18.2.0",
     "@angular/platform-browser-dynamic": "~18.2.0",
     "@angular/platform-server": "~18.2.0",
     "@angular/router": "~18.2.0",
     "@angular/ssr": "~18.2.0",
+    "@ngrx/component": "^18.1.1",
     "express": "~4.18.2",
-    "firebase": "^11.0.1",
     "rxjs": "~7.8.0",
     "yarn": "^1.22.22",
     "zone.js": "~0.14.3"
