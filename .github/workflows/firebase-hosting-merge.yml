@@ -9,6 +9,8 @@ on:
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
+    env:
+      NX_NON_NATIVE_HASHER: true
     steps:
       - uses: actions/checkout@v4
       - run: yarn install && yarn build
