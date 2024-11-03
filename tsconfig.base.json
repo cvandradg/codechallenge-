@@ -17,7 +17,8 @@
     "paths": {
       "@testapp/app": ["libs/testapp/frontend/ui/app/src/index.ts"],
       "@testapp/login": ["libs/testapp/frontend/ui/login/src/index.ts"],
-      "@testapp/shared": ["libs/testapp/frontend/ui/shared/src/index.ts"]
+      "@testapp/shared": ["libs/testapp/frontend/ui/shared/src/index.ts"],
+      "@testapp/shared/*": ["libs/testapp/frontend/ui/shared/src/lib/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]
