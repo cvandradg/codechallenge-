@@ -5,6 +5,7 @@
   "scripts": {
     "test": "npx nx run-many -t test",
     "build:only": "npx nx build testapp",
+    "format": "npx nx format --base=main --head=HEAD",
     "build": "npx nx build testapp && npx nx run-many -t test",
     "s": "npx nx lint testapp && npx nx build testapp && npx nx run-many -t test && npx nx serve testapp",
     "r": "npx nx serve testapp"

@@ -31,8 +31,8 @@
 }
 
 .explanation-text {
-    font-size: 0.8rem;
-    color: black;
+  font-size: 0.8rem;
+  color: black;
 }
 
 mat-card {
@@ -65,7 +65,7 @@ mat-divider {
 ///////////////////////////////////////////////////////////////
 
 .google-signin-button {
-    margin: 2rem 0;
+  margin: 2rem 0;
 }
 
 // gsi-material-button {
@@ -132,8 +132,6 @@ mat-divider {
   vertical-align: top;
 }
 
-
-
 .gsi-material-button:disabled {
   cursor: default;
   background-color: #ffffff61;
@@ -154,5 +152,3 @@ mat-divider {
   box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
     0 1px 3px 1px rgba(60, 64, 67, 0.15);
 }
-
-
