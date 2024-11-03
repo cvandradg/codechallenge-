@@ -9,7 +9,8 @@ on:
 permissions:
   actions: read
   contents: read
-
+env:
+  NX_COULD_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
   main:
     runs-on: ubuntu-latest
