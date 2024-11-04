@@ -1,6 +1,9 @@
 <div
   class="background-container"
   [style.backgroundImage]="'url(global/assets/img/blue-background.jpg)'"
+  *ngrxLet="{
+    searchList: dashboardStore.searchList$ | ngrxPush,
+  } as vm"
 >
   <div class="content">
     <mat-tab-group>
@@ -11,25 +14,25 @@
             <input
               matInput
               aria-label="State"
+              placeholder="Try 'Luke Skywalker'"
               [matAutocomplete]="auto"
               [formControl]="stateCtrl"
+              (input)="dashboardStore.search$(stateCtrl.value)"
             />
             <mat-autocomplete
               #auto="matAutocomplete"
               (optionSelected)="onItemSelected($event)"
             >
-              @for (state of filteredStates | async; track state) {
-              <mat-option [value]="state.name">
-                <img
-                  alt=""
-                  class="example-option-img"
-                  [src]="state.flag"
-                  height="25"
-                />
-                <span>{{ state.name }}</span> |
-                <small>Population: {{ state.population }}</small>
+              <mat-option *ngIf="stateCtrl.value && vm.searchList === null">
+                <mat-spinner diameter="20" mode="indeterminate" />
               </mat-option>
-              }
+
+              @if( vm.searchList) { @for (state of vm.searchList; track state) {
+              <mat-option [value]="state.name">
+                <span>{{ state.name }}</span> |
+                <small>Birth Year: {{ state.birth_year }}</small>
+              </mat-option>
+              } }
             </mat-autocomplete>
           </mat-form-field>
 
