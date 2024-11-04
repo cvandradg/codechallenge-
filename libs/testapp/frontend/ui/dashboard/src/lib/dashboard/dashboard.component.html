@@ -39,7 +39,7 @@
                 <mat-spinner diameter="20" mode="indeterminate" />
               </mat-option>
 
-              @if( vm.searchList) { @for (person of vm.searchList; track person)
+              @if( vm.searchList) { @for (person of vm.searchList; track person.name)
               {
               <mat-option
                 [value]="person.name"
@@ -53,7 +53,7 @@
           </mat-form-field>
 
           <mat-list disableRipple="false">
-            @for (selected of vm.selectedList; track selected) {
+            @for (selected of vm.selectedList; track selected.name) {
             <mat-list-item>
               <mat-icon color="warn" matListItemIcon>folder</mat-icon>
               <div matListItemTitle>{{ selected.name }}</div>
