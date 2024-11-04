@@ -24,7 +24,7 @@ import {
 } from '@angular/fire/auth';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class AuthService {
   private auth: Auth = inject(Auth);

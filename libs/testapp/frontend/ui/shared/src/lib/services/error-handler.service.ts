@@ -8,7 +8,7 @@ function errorIsAngularFireError(err: AngularFireError): boolean {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ErrorHandlerService implements ErrorHandler {
   handleError(error: AngularFireError): void {
