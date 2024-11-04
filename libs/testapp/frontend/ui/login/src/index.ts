@@ -1,3 +1,3 @@
 export * from './lib/lib.routes';
 
-export * from './lib/components/testapp-frontend-login/testapp-frontend-login.component';
+export * from './lib/components/login/login.component';

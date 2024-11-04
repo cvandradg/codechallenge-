@@ -1,34 +1,36 @@
 <div
   class="background-container"
   [style.backgroundImage]="'url(global/assets/img/blue-background.jpg)'"
+  *ngrxLet="{
+    error: loginStore.error$ | ngrxPush,
+    loading: loginStore.loading$ | ngrxPush,
+  } as vm"
 >
   <div class="content">
     <mat-card>
       <mat-card-content>
-        <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="loginInputForm">
           <h2>Log In</h2>
-          <mat-error *ngIf="!loginValid">
+          <mat-error *ngIf="!vm.loading && vm.error?.status">
             The username and password were not recognized
           </mat-error>
           <mat-form-field>
             <input
               matInput
-              placeholder="Email"
-              [(ngModel)]="username"
-              name="username"
-              required
+              placeholder="somemail@domain.com"
+              type="email"
+              formControlName="user"
+              (keyup.enter)="loginStore.accessAccount$(credentials)"
             />
             <mat-error> Please provide a valid email address </mat-error>
           </mat-form-field>
           <mat-form-field>
             <input
               matInput
+              placeholder="password"
               type="password"
-              placeholder="Password"
-              [(ngModel)]="password"
-              autocomplete="on"
-              name="password"
-              required
+              formControlName="pass"
+              (keyup.enter)="loginStore.accessAccount$(credentials)"
             />
             <mat-error> Please provide a valid password </mat-error>
           </mat-form-field>
@@ -36,7 +38,8 @@
             mat-raised-button
             class="login-button"
             color="primary"
-            [disabled]="!loginForm.form.valid"
+            [disabled]="!loginInputForm.valid"
+            (submitEvent)="loginStore.accessAccount$(credentials)"
           >
             Login
           </button>
@@ -46,7 +49,10 @@
 
           <!--  -->
           <div class="google-signin-button">
-            <button class="gsi-material-button">
+            <button
+              class="gsi-material-button"
+              (submitEvent)="loginStore.googleSignin$()"
+            >
               <div class="gsi-material-button-content-wrapper">
                 <div class="gsi-material-button-icon">
                   <svg

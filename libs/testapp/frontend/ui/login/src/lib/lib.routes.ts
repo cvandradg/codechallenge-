@@ -1,6 +1,6 @@
 import { Route } from '@angular/router';
-import { TestappFrontendLoginComponent } from './components/testapp-frontend-login/testapp-frontend-login.component';
+import { LoginComponent } from './components/login/login.component';
 
 export const testappFrontendLoginRoutes: Route[] = [
-  { path: '', component: TestappFrontendLoginComponent },
+  { path: '', pathMatch: 'full', component: LoginComponent },
 ];
