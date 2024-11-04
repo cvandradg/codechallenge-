@@ -6,6 +6,10 @@ Welcome to my project! This application demonstrates my expertise as a developer
 
 ## Key Features & Practices 📋
 
+### 0. Declarative Programming
+   - **Redability** Readability First: I am a developer who prioritizes clean, readable code above all. My approach is to write code that’s not only scalable but also intuitive and minimalistic, ensuring that every line serves a purpose and can be easily understood, maintained, and extended by others.
+
+
 ### 1. Esbuild
    - **Why Esbuild?** Esbuild is a powerful bundler that enhances build speed and efficiency, significantly reducing development and deployment times.
 
