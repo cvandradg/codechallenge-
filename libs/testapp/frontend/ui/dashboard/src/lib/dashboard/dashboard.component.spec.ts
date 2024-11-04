@@ -1,19 +1,17 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TestappFrontendDashboardComponent } from './dashboard.component';
+import { of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { DashboardStore } from './dashboard.store';
 import { MODULES } from '@testapp/shared/exports/export-modules';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DashboardStore } from './dashboard.store';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SwapiService } from '@testapp/shared/services/swapi.service';
-import { HttpClient } from '@angular/common/http';
-import { of } from 'rxjs';
-import { Auth } from '@angular/fire/auth';
 import { AuthService } from '@testapp/shared/services/firebase.service';
+import { TestappFrontendDashboardComponent } from './dashboard.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('TestappFrontendDashboardComponent', () => {
   let component: TestappFrontendDashboardComponent;
   let fixture: ComponentFixture<TestappFrontendDashboardComponent>;
-  let formBuilder: FormBuilder;
 
   const mockLoginStore = {
     someMethod: jest.fn().mockReturnValue(of(true)),
@@ -44,7 +42,6 @@ describe('TestappFrontendDashboardComponent', () => {
       ],
     }).compileComponents();
 
-    formBuilder = TestBed.inject(FormBuilder);
     fixture = TestBed.createComponent(TestappFrontendDashboardComponent);
     component = fixture.componentInstance;
 
