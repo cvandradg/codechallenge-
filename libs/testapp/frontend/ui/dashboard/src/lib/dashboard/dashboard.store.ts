@@ -1,10 +1,9 @@
-import { inject, Injectable } from '@angular/core';
 import { tapResponse } from '@ngrx/operators';
-import { Credentials } from '@testapp/shared/types/general-types';
-import { switchMap, Observable, tap } from 'rxjs';
-import { ComponentStoreMixinHelper } from '@testapp/shared/helpers/component-store-mixin';
 import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { switchMap, Observable, tap, debounceTime, pipe } from 'rxjs';
 import { SwapiService } from '@testapp/shared/services/swapi.service';
+import { ComponentStoreMixinHelper } from '@testapp/shared/helpers/component-store-mixin';
 
 interface person {
   name: string;
@@ -25,34 +24,46 @@ export class DashboardStore extends ComponentStoreMixinHelper<{
   readonly searchList$ = this.select((state) => state['searchList']);
   readonly selectedList$ = this.select((state) => state['selectedList']);
 
-  readonly setSearchList = this.updater((state, searchList: person[]) => ({
-    ...state,
-    searchList,
-  }));
+  readonly setSearchList = this.updater(
+    (state, searchList: person[] | null) => ({
+      ...state,
+      searchList,
+    })
+  );
 
-  //   readonly setBirthDate = this.updater((state, name: boolean) => ({
-  //     ...state,
-  //     name: name,
-  //   }));
+  readonly setselectedList = this.updater((state, selectedList: person[]) => ({
+    ...state,
+    selectedList: [...selectedList],
+  }));
 
   readonly search$ = this.effect((searchValue$: Observable<any>) =>
     searchValue$.pipe(
-      tap((value: any) => console.log('value', value)),
+      tap(() => this.setSearchList(null)),
+      debounceTime(400),
       this.responseHandler(
         switchMap((searchValue: string) =>
-          this.swapiService
-            .searchPeople(searchValue)
-            .pipe(tap((x) => console.log('resulted in x,', x)))
+          this.swapiService.searchPeople(searchValue)
         )
       ),
       tapResponse(this.onSuccess, this.handleError)
     )
   );
 
+  readonly selectedPerson$ = this.effect((selected$: Observable<person>) =>
+    selected$.pipe(tap((selected) => this.setselectedList([selected])))
+  );
+
+  readonly logout$ = this.effect<void>(
+    pipe(
+      this.responseHandler(
+        switchMap(() =>
+          this.authService.signOut().pipe(tap(() => this.router.navigate([''])))
+        )
+      )
+    )
+  );
+
   get onSuccess() {
-    return (result: { results: [] }) => {
-      console.log('result', result.results);
-      this.setSearchList(result.results);
-    };
+    return (result: { results: [] }) => this.setSearchList(result.results);
   }
 }

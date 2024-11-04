@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { tapResponse } from '@ngrx/operators';
 import { UserCredential } from 'firebase/auth';
+import { pipe, switchMap, Observable, tap } from 'rxjs';
 import { Credentials } from '@testapp/shared/types/general-types';
-import { pipe, from, EMPTY, forkJoin, switchMap, Observable, tap, map } from 'rxjs';
 import { ComponentStoreMixinHelper } from '@testapp/shared/helpers/component-store-mixin';
 
 @Injectable()
@@ -17,8 +17,7 @@ export class LoginStore extends ComponentStoreMixinHelper<
     pipe(
       tap(() => console.log('Google Signin')),
       this.responseHandler(
-        switchMap(() => this.authService.googleSignin().pipe(
-          this.onLogin))
+        switchMap(() => this.authService.googleSignin().pipe(this.onLogin))
       )
     )
   );
@@ -37,28 +36,13 @@ export class LoginStore extends ComponentStoreMixinHelper<
   get onLogin() {
     return pipe(
       tapResponse(this.onSuccess, ({ error, user }) => {
-        this.onSigninError$(user);
         this.handleError(error);
       })
     );
   }
 
   get onSuccess() {
-    return (user: UserCredential) => {
-      console.log('User:', user);
-      return user.user.emailVerified
-        ? this.router.navigate(['dashboard'])
-        : this.authService.sendEmailVerification(user.user);
-    };
+    return (user: UserCredential) =>
+      user.user.emailVerified && this.router.navigate(['dashboard']);
   }
-
-  readonly onSigninError$ = this.effect((user$: Observable<UserCredential>) =>
-    user$.pipe(
-      switchMap((user: UserCredential) => {
-        return this.authService.additionalUserInfo(user)?.isNewUser
-          ? forkJoin([from(this.authService.deleteCurrentUser(user.user))])
-          : EMPTY;
-      })
-    )
-  );
 }

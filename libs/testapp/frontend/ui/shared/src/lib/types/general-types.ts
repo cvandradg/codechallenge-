@@ -32,7 +32,6 @@ export interface AngularFireError extends Error {
 
 export type NothingOr<T> = T | null | undefined;
 
-
 export const emptyCallback: () => void = () => {
   return;
 };

@@ -15,4 +15,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 })
 export class LoginComponent extends BaseComponent {
   loginStore = inject(LoginStore);
+
+  
+
 }

@@ -9,4 +9,4 @@ globalThis.ngJest = {
 global.ReadableStream = global.ReadableStream || class {};
 
 import 'jest-preset-angular/setup-jest';
-import "web-streams-polyfill/polyfill";
+import 'web-streams-polyfill/polyfill';
