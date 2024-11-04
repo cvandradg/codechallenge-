@@ -1,3 +1,12 @@
+<mat-toolbar color="secondary">
+  <mat-toolbar-row>
+    <span>Demo app for Senior Angular Test Challenge</span>
+    <span class="example-spacer"></span>
+    <span>Logout</span>
+    <mat-icon class="example-icon" (click)="dashboardStore.logout$()">logout</mat-icon>
+  </mat-toolbar-row>
+</mat-toolbar>
+
 <div
   class="background-container"
   [style.backgroundImage]="'url(global/assets/img/blue-background.jpg)'"

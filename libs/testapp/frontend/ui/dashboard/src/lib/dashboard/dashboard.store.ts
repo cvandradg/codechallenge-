@@ -1,7 +1,7 @@
 import { tapResponse } from '@ngrx/operators';
-import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { switchMap, Observable, tap, debounceTime } from 'rxjs';
+import { inject, Injectable } from '@angular/core';
+import { switchMap, Observable, tap, debounceTime, pipe } from 'rxjs';
 import { SwapiService } from '@testapp/shared/services/swapi.service';
 import { ComponentStoreMixinHelper } from '@testapp/shared/helpers/component-store-mixin';
 
@@ -50,7 +50,17 @@ export class DashboardStore extends ComponentStoreMixinHelper<{
   );
 
   readonly selectedPerson$ = this.effect((selected$: Observable<person>) =>
-    selected$.pipe(tap((s) => this.setselectedList([s])))
+    selected$.pipe(tap((selected) => this.setselectedList([selected])))
+  );
+
+  readonly logout$ = this.effect<void>(
+    pipe(
+      this.responseHandler(
+        switchMap(() =>
+          this.authService.signOut().pipe(tap(() => this.router.navigate([''])))
+        )
+      )
+    )
   );
 
   get onSuccess() {

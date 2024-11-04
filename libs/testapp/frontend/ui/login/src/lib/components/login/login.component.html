@@ -11,30 +11,37 @@
       <mat-card-content>
         <form [formGroup]="loginInputForm">
           <h2>Log In</h2>
+          <p>
+            Simple application with functional Single Sign-on and advance
+            angular practices.
+          </p>
           <mat-error *ngIf="!vm.loading && vm.error?.status">
             The username and password were not recognized
           </mat-error>
           <mat-form-field>
             <input
               matInput
-              placeholder="somemail@domain.com"
+              placeholder="user: 'info@claudioandrade.com'"
               type="email"
               autocomplete="on"
               formControlName="user"
               (keyup.enter)="loginStore.accessAccount$(credentials)"
             />
-            <mat-error> Please provide a valid email address </mat-error>
+            <mat-error>
+              {{ "This one is borring, let's use the google signin :D" }}
+            </mat-error>
+            <mat-error> </mat-error>
           </mat-form-field>
           <mat-form-field>
             <input
               matInput
-              placeholder="password"
+              placeholder="pass 'abcdef"
               type="password"
               autocomplete="on"
               formControlName="pass"
               (keyup.enter)="loginStore.accessAccount$(credentials)"
             />
-            <mat-error> Please provide a valid password </mat-error>
+            <mat-error> Google signin is little lower :D </mat-error>
           </mat-form-field>
           <button
             mat-raised-button

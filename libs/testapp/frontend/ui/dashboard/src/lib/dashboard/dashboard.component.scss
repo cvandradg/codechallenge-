@@ -55,3 +55,16 @@ mat-tab-group {
 .mat-mdc-list-item-icon {
   color: rgba(0, 0, 0, 0.54);
 }
+
+.example-icon {
+  padding: 0 14px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+mat-toolbar {
+  background-color: #151480; // Replace with your desired color
+  color: white; // Adjust text color as needed
+}
