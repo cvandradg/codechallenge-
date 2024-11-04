@@ -1,81 +1,77 @@
-# Testws
+# My Angular Application Showcase 🚀
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+Welcome to my project! This application demonstrates my expertise as a developer, showcasing various features, tools, and best practices I've implemented to create a robust, modern, and highly performant Angular app. Below are the key features and techniques used in this project, along with brief explanations of their purpose and benefits.
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
+---
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/tutorials/angular-monorepo-tutorial?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+## Key Features & Practices 📋
 
-## Finish your CI setup
+### 1. Esbuild
+   - **Why Esbuild?** Esbuild is a powerful bundler that enhances build speed and efficiency, significantly reducing development and deployment times.
 
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/Li059DxgXX)
+### 2. SSR Hydration 🌊
+   - **Hydration Explanation**: Implemented Server-Side Rendering (SSR) hydration to improve initial load times and SEO. This process rehydrates the server-rendered HTML on the client side, making the app fully interactive.
 
-## Run tasks
+### 3. Yarn 4 Installation
+   - **Yarn 4**: Upgraded to Yarn 4 for faster dependency resolution and enhanced workspace management, providing a seamless development experience.
 
-To run the dev server for your app, use:
+### 4. NX Integration with GitHub Actions and Cloud 🚀
+   - **Nx & CI/CD**: Configured Nx with GitHub Actions and Nx Cloud for continuous integration and deployment, streamlining the development workflow with automated testing and builds.
 
-```sh
-npx nx serve testapp
-```
+### 5. GoDaddy Hosting & DNS Configuration 🌐
+   - **DNS & Hosting**: Set up hosting on GoDaddy with custom DNS configurations, ensuring smooth and secure domain management.
 
-To create a production bundle:
+### 6. Firebase Redirect Configuration
+   - **Redirection**: Configured Firebase to redirect `@.com` instead of `www.@.com`, optimizing for user-friendly URLs.
 
-```sh
-npx nx build testapp
-```
+### 7. Custom Scripts Creation 📝
+   - **Automation Scripts**: Developed custom scripts for streamlined operations, including build, test, and deployment tasks.
 
-To see all available targets to run for a project, run:
+### 8. Firebase Hosting & Deploy Configuration
+   - **Hosting on Firebase**: Leveraged Firebase Hosting for its reliability and simplicity, with a tailored deployment configuration for a smooth release process.
 
-```sh
-npx nx show project testapp
-```
+### 9. GitHub Branch Protection Rules 🛡️
+   - **Branch Security**: Applied branch protection rules to enforce code quality standards and maintain project integrity.
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
+### 10. Firebase GitHub Actions 🤖
+   - **Firebase CI Integration**: Set up GitHub Actions specifically for Firebase to automate build and deployment processes.
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+### 11. Consistent Naming Conventions
+   - **Naming Best Practices**: Adopted a structured naming convention for classes and prefixes for components to improve code readability and consistency.
 
-## Add new projects
+### 12. Firebase Configuration 🔧
+   - **Centralized Config**: Managed Firebase configuration efficiently, ensuring a streamlined setup across development and production environments.
 
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
+### 13. Minting SSL Certificates 🔒
+   - **Certificate Management**: Successfully minted SSL certificates for secure, HTTPS-enabled hosting.
 
-Use the plugin's generator to create new projects.
+### 14. Troubleshooting GitHub Actions with Personal Access Tokens
+   - **CI Solution**: Resolved GitHub Action issues by integrating a personal access token, ensuring stable connectivity with GitHub Actions and Nx Cloud tokens.
 
-To generate a new application, use:
+### 15. Commit-Driven Development (CDD) 📜
+   - **CDD Approach**: Followed a CDD approach with meaningful commits under 50 characters, promoting clear version history.
 
-```sh
-npx nx g @nx/angular:app demo
-```
+### 16. Zero-Warning Policy 🚫
+   - **Strict Code Standards**: Committed to a zero-warning codebase, allowing exceptions only for essential dependencies (e.g., `undici` as a CommonJS dependency).
 
-To generate a new library, use:
+### 17. Well-Structured Services
+   - **Service Architecture**: Organized services within a clear structure, facilitating scalable and maintainable code.
 
-```sh
-npx nx g @nx/angular:lib mylib
-```
+### 18. Component Store for State Management 🗃️
+   - **State Management**: Utilized a component store approach, applying declarative programming principles for predictable state management.
 
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
+### 19. Web Streams Polyfill Solution for `undici`
+   - **Polyfill Exploration**: Investigated and implemented web streams polyfills for `undici`, ensuring compatibility across environments.
 
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+---
 
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+## Installation and Setup 🛠️
 
-## Install Nx Console
+Clone the repository and follow the instructions below to set up the project.
 
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
+```bash
+# Clone the repository
+git clone https://github.com/cvandradg/codechallenge-.git
 
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Useful links
-
-Learn more:
-
-- [Learn more about this workspace setup](https://nx.dev/getting-started/tutorials/angular-monorepo-tutorial?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-And join the Nx community:
-
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+# Install dependencies
+yarn install
