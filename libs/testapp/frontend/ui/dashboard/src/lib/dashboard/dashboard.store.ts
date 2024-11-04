@@ -31,9 +31,11 @@ export class DashboardStore extends ComponentStoreMixinHelper<{
     })
   );
 
-  readonly setselectedList = this.updater((state, selectedList: person[]) => ({
+  readonly setselectedList = this.updater((state, selected: person) => ({
     ...state,
-    selectedList: [...selectedList],
+    selectedList: state.selectedList
+      ? [...state.selectedList, selected]
+      : [selected],
   }));
 
   readonly search$ = this.effect((searchValue$: Observable<any>) =>
@@ -50,7 +52,7 @@ export class DashboardStore extends ComponentStoreMixinHelper<{
   );
 
   readonly selectedPerson$ = this.effect((selected$: Observable<person>) =>
-    selected$.pipe(tap((selected) => this.setselectedList([selected])))
+    selected$.pipe(tap((selected) => this.setselectedList(selected)))
   );
 
   readonly logout$ = this.effect<void>(
