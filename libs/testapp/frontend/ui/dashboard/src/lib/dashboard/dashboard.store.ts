@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { tapResponse } from '@ngrx/operators';
 import { Credentials } from '@testapp/shared/types/general-types';
-import { switchMap, Observable, tap } from 'rxjs';
+import { switchMap, Observable, tap, debounceTime } from 'rxjs';
 import { ComponentStoreMixinHelper } from '@testapp/shared/helpers/component-store-mixin';
 import { HttpClient } from '@angular/common/http';
 import { SwapiService } from '@testapp/shared/services/swapi.service';
@@ -25,19 +25,20 @@ export class DashboardStore extends ComponentStoreMixinHelper<{
   readonly searchList$ = this.select((state) => state['searchList']);
   readonly selectedList$ = this.select((state) => state['selectedList']);
 
-  readonly setSearchList = this.updater((state, searchList: person[]) => ({
+  readonly setSearchList = this.updater((state, searchList: person[] | null) => ({
     ...state,
     searchList,
   }));
 
-  //   readonly setBirthDate = this.updater((state, name: boolean) => ({
-  //     ...state,
-  //     name: name,
-  //   }));
+  readonly setselectedList = this.updater((state, selectedList: person[]) => ({
+    ...state,
+    selectedList: [...selectedList],
+  }));
 
   readonly search$ = this.effect((searchValue$: Observable<any>) =>
     searchValue$.pipe(
-      tap((value: any) => console.log('value', value)),
+      tap(() => this.setSearchList(null)),
+      debounceTime(400),
       this.responseHandler(
         switchMap((searchValue: string) =>
           this.swapiService
@@ -48,6 +49,17 @@ export class DashboardStore extends ComponentStoreMixinHelper<{
       tapResponse(this.onSuccess, this.handleError)
     )
   );
+
+  readonly selectedPerson$ = this.effect(
+    (person$: Observable<person>) =>
+      person$.pipe(
+        tap(x=> {
+          console.log('selected person', x)
+          this.setselectedList([x])
+        }),
+        )
+  );
+
 
   get onSuccess() {
     return (result: { results: [] }) => {

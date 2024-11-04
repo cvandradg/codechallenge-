@@ -3,6 +3,8 @@
   [style.backgroundImage]="'url(global/assets/img/blue-background.jpg)'"
   *ngrxLet="{
     searchList: dashboardStore.searchList$ | ngrxPush,
+    selectedList: dashboardStore.selectedList$ | ngrxPush,
+    loading: dashboardStore.loading$ | ngrxPush,
   } as vm"
 >
   <div class="content">
@@ -19,29 +21,34 @@
               [formControl]="stateCtrl"
               (input)="dashboardStore.search$(stateCtrl.value)"
             />
-            <mat-autocomplete
-              #auto="matAutocomplete"
-              (optionSelected)="onItemSelected($event)"
-            >
-              <mat-option *ngIf="stateCtrl.value && vm.searchList === null">
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngIf="vm.searchList?.length === 0">
+                <span>Not Found</span>
+              </mat-option>
+
+              <mat-option *ngIf="vm.loading">
                 <mat-spinner diameter="20" mode="indeterminate" />
               </mat-option>
 
-              @if( vm.searchList) { @for (state of vm.searchList; track state) {
-              <mat-option [value]="state.name">
-                <span>{{ state.name }}</span> |
-                <small>Birth Year: {{ state.birth_year }}</small>
+              @if( vm.searchList) { @for (person of vm.searchList; track person)
+              {
+              <mat-option
+                [value]="person.name"
+                (click)="dashboardStore.selectedPerson$(person)"
+              >
+                <span>{{ person.name }}</span> |
+                <small>Birth Year: {{ person.birth_year }}</small>
               </mat-option>
               } }
             </mat-autocomplete>
           </mat-form-field>
 
           <mat-list disableRipple="false">
-            @for (folder of folders; track folder) {
+            @for (selected of vm.selectedList; track selected) {
             <mat-list-item>
               <mat-icon color="warn" matListItemIcon>folder</mat-icon>
-              <div matListItemTitle>{{ folder.name }}</div>
-              <div matListItemLine>{{ folder.population }}</div>
+              <div matListItemTitle>{{ selected.name }}</div>
+              <div matListItemLine>{{ selected.birth_year }}</div>
             </mat-list-item>
             }
           </mat-list>
