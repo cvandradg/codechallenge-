@@ -1,18 +1,18 @@
-import { of } from 'rxjs';
-import { LoginStore } from './login.store';
-import { LoginComponent } from './login.component';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestappFrontendDashboardComponent } from './dashboard.component';
 import { MODULES } from '@testapp/shared/exports/export-modules';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Auth } from '@angular/fire/auth';
-import { AuthService } from '@testapp/shared/services/firebase.service';
+import { DashboardStore } from './dashboard.store';
 import { SwapiService } from '@testapp/shared/services/swapi.service';
 import { HttpClient } from '@angular/common/http';
+import { of } from 'rxjs';
+import { Auth } from '@angular/fire/auth';
+import { AuthService } from '@testapp/shared/services/firebase.service';
 
-describe('LoginComponent', () => {
-  let component: LoginComponent;
-  let fixture: ComponentFixture<LoginComponent>;
+describe('TestappFrontendDashboardComponent', () => {
+  let component: TestappFrontendDashboardComponent;
+  let fixture: ComponentFixture<TestappFrontendDashboardComponent>;
   let formBuilder: FormBuilder;
 
   const mockLoginStore = {
@@ -30,14 +30,14 @@ describe('LoginComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        LoginComponent,
+        TestappFrontendDashboardComponent,
         MODULES,
         ReactiveFormsModule,
         BrowserAnimationsModule,
       ],
       providers: [
         FormBuilder,
-        { provide: LoginStore, useValue: mockLoginStore },
+        { provide: DashboardStore, useValue: mockLoginStore },
         { provide: AuthService, useValue: authService },
         { provide: SwapiService, useValue: swapiService },
         { provide: HttpClient, useValue: swapiService },
@@ -45,13 +45,8 @@ describe('LoginComponent', () => {
     }).compileComponents();
 
     formBuilder = TestBed.inject(FormBuilder);
-    fixture = TestBed.createComponent(LoginComponent);
+    fixture = TestBed.createComponent(TestappFrontendDashboardComponent);
     component = fixture.componentInstance;
-
-    component.loginInputForm = formBuilder.group({
-      user: [''],
-      pass: [''],
-    });
 
     fixture.detectChanges();
   });

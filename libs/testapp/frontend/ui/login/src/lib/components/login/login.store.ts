@@ -5,9 +5,7 @@ import { Credentials } from '@testapp/shared/types/general-types';
 import { pipe, from, EMPTY, forkJoin, switchMap, Observable, tap } from 'rxjs';
 import { ComponentStoreMixinHelper } from '@testapp/shared/helpers/component-store-mixin';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class LoginStore extends ComponentStoreMixinHelper<
   Record<string, unknown>
 > {

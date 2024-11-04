@@ -1,0 +1,52 @@
+<div
+  class="background-container"
+  [style.backgroundImage]="'url(global/assets/img/blue-background.jpg)'"
+>
+  <div class="content">
+    <mat-tab-group>
+      <mat-tab label="TestChallenge">
+        <form class="example-form">
+          <mat-form-field class="example-full-width">
+            <mat-label>StarWars Search</mat-label>
+            <input
+              matInput
+              aria-label="State"
+              [matAutocomplete]="auto"
+              [formControl]="stateCtrl"
+            />
+            <mat-autocomplete
+              #auto="matAutocomplete"
+              (optionSelected)="onItemSelected($event)"
+            >
+              @for (state of filteredStates | async; track state) {
+              <mat-option [value]="state.name">
+                <img
+                  alt=""
+                  class="example-option-img"
+                  [src]="state.flag"
+                  height="25"
+                />
+                <span>{{ state.name }}</span> |
+                <small>Population: {{ state.population }}</small>
+              </mat-option>
+              }
+            </mat-autocomplete>
+          </mat-form-field>
+
+          <mat-list disableRipple="false">
+            @for (folder of folders; track folder) {
+            <mat-list-item>
+              <mat-icon color="warn" matListItemIcon>folder</mat-icon>
+              <div matListItemTitle>{{ folder.name }}</div>
+              <div matListItemLine>{{ folder.population }}</div>
+            </mat-list-item>
+            }
+          </mat-list>
+        </form>
+      </mat-tab>
+      <mat-tab label="TikTakToe">
+        <div class="tiktaktoe">Currently under development</div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>
