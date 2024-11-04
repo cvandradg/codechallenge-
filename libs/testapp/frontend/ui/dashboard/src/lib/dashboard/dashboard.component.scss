@@ -1,0 +1,57 @@
+.background-container {
+  position: relative;
+  width: 100vw; // full width of the viewport
+  height: 100vh; // full height of the viewport
+  background-size: cover; // makes the image cover the entire area
+  background-position: center; // centers the image
+  background-repeat: no-repeat; // prevents repeating
+  overflow: hidden; // hides any overflow
+}
+
+.content {
+  h2 {
+    font-size: 1rem;
+    color: black;
+  }
+
+  height: 100%;
+  display: flex; // or use other layout styles as needed
+  justify-content: center;
+  align-items: center;
+  color: blue; // text color (adjust as needed for contrast)
+}
+
+mat-tab-group {
+  background-color: white;
+  border-radius: 0.4rem;
+  padding: 2rem;
+  width: 30rem;
+}
+
+.tiktaktoe {
+  color: black;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.example-option-img {
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+[dir='rtl'] .example-option-img {
+  margin-right: 0;
+  margin-left: 8px;
+}
+
+.mat-mdc-list-item-icon {
+  color: rgba(0, 0, 0, 0.54);
+}

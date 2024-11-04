@@ -2,12 +2,10 @@ import { Injectable } from '@angular/core';
 import { tapResponse } from '@ngrx/operators';
 import { UserCredential } from 'firebase/auth';
 import { Credentials } from '@testapp/shared/types/general-types';
-import { pipe, from, EMPTY, forkJoin, switchMap, Observable } from 'rxjs';
+import { pipe, from, EMPTY, forkJoin, switchMap, Observable, tap, map } from 'rxjs';
 import { ComponentStoreMixinHelper } from '@testapp/shared/helpers/component-store-mixin';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class LoginStore extends ComponentStoreMixinHelper<
   Record<string, unknown>
 > {
@@ -17,8 +15,10 @@ export class LoginStore extends ComponentStoreMixinHelper<
 
   readonly googleSignin$ = this.effect<void>(
     pipe(
+      tap(() => console.log('Google Signin')),
       this.responseHandler(
-        switchMap(() => this.authService.googleSignin().pipe(this.onLogin))
+        switchMap(() => this.authService.googleSignin().pipe(
+          this.onLogin))
       )
     )
   );

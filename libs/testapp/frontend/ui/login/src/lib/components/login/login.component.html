@@ -19,6 +19,7 @@
               matInput
               placeholder="somemail@domain.com"
               type="email"
+              autocomplete="on"
               formControlName="user"
               (keyup.enter)="loginStore.accessAccount$(credentials)"
             />
@@ -29,6 +30,7 @@
               matInput
               placeholder="password"
               type="password"
+              autocomplete="on"
               formControlName="pass"
               (keyup.enter)="loginStore.accessAccount$(credentials)"
             />
@@ -39,7 +41,7 @@
             class="login-button"
             color="primary"
             [disabled]="!loginInputForm.valid"
-            (submitEvent)="loginStore.accessAccount$(credentials)"
+            (click)="loginStore.accessAccount$(credentials)"
           >
             Login
           </button>
@@ -48,11 +50,13 @@
           <div>Sign in with</div>
 
           <!--  -->
-          <div class="google-signin-button">
-            <button
-              class="gsi-material-button"
-              (submitEvent)="loginStore.googleSignin$()"
-            >
+          <div
+            class="google-signin-button"
+            tabindex="0"
+            (click)="loginStore.googleSignin$()"
+            (keyup.enter)="loginStore.googleSignin$()"
+          >
+            <button class="gsi-material-button">
               <div class="gsi-material-button-content-wrapper">
                 <div class="gsi-material-button-icon">
                   <svg

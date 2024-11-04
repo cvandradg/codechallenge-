@@ -17,6 +17,7 @@ import { environment } from '@testapp/shared/environments/environment';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { ErrorHandlerService } from '@testapp/shared/services/error-handler.service';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -27,6 +28,7 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(BrowserModule, BrowserAnimationsModule),
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideAuth(() => getAuth()),
+    provideHttpClient(withFetch()),
     {
       provide: FIREBASE_OPTIONS,
       useValue: environment.firebaseConfig,
