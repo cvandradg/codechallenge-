@@ -5,4 +5,9 @@ globalThis.ngJest = {
     errorOnUnknownProperties: true,
   },
 };
+
+global.ReadableStream = global.ReadableStream || class {};
+
 import 'jest-preset-angular/setup-jest';
+import 'web-streams-polyfill';
+import "web-streams-polyfill/polyfill";
